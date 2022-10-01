@@ -9,13 +9,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        versions: [6]
+    strategy:
+      matrix:
+        versions: [v4.5.5]
     env:
-      repo: "govpf/hello" # Please don't forget to create the repo on Docker Hub
+      repo: "govpf/kustomize"
     steps:
-
     - name: Checkout
       uses: actions/checkout@v3.0.2
 
@@ -40,7 +39,7 @@ jobs:
         push: true
         tags: |
           ${{ env.repo }}:latest
-#          ${{ env.repo }}:${{ matrix.versions }}
+          ${{ env.repo }}:${{ matrix.versions }}
 
     - name: Update repo description
       uses: peter-evans/dockerhub-description@v3.0.0
